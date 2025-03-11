@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Photo Gallery</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/assets/plugins/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet">
+    <link href="/assets/css/global.css" rel="stylesheet">
+    <script src="/assets/plugins/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="bg-color-sky-light">
+            <br>
+            <center>
+                <h2>Photo Gallery</h2>
+                <h3 style="font-weight: 600;">{{ albumName }}</h3>
+                <p><strong>Created by:</strong> {{ creator }}</p> <!-- Album creator's name -->
+                <br>
+                <a href="/">Home</a> | 
+                <a href="/album/{{albumID}}">Back to Album</a> | 
+                <a href="/album/{{albumID}}/addPhoto">Add Photo</a>
+                <br>
+            </center>
+            
+            <div class="content-sm container">
+                <div class="row">
+                    <div class="col-md-9 md-margin-b-50">
+                        <article class="blog-grid margin-b-30">
+                            <img class="img-responsive" src="{{ photo.photoURL }}" alt="">
+                            <div class="blog-grid-content">
+                                <h2>{{ photo.title }}</h2>
+                                <p>{{ photo.description }}</p>
+                                
+                                <!-- Uploader Info -->
+                                <p><strong>Posted by:</strong> {{ photo.uploader }}</p>
+                                <p><strong>Created At:</strong> {{ photo.createdAt }}</p>
+                                <p><strong>Updated At:</strong> {{ photo.updatedAt }}</p>
+
+                                <!-- DELETE BUTTON -->
+                                <form method="POST" action="/album/{{ albumID }}/photo/{{ photo.photoID }}/delete" onsubmit="return confirm('Are you sure you want to delete this photo?');">
+                                    <button type="submit" class="btn btn-danger">Delete Photo</button>
+                                </form>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="blog-sidebar">
+                            <div class="blog-sidebar-heading">
+                                <h4>Tags</h4>
+                            </div>
+                            <ul class="list-inline">
+                                {% for tag in tags %}
+                                    <li><a class="badge badge-secondary" href="#">{{ tag }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        
+                        <div class="blog-sidebar">
+                            <div class="blog-sidebar-heading">
+                                <h4>EXIF Data</h4>
+                            </div>
+                            <ul>
+                                {% for key, value in exifdata.items() %}
+                                    <li>{{ key }}: {{ value }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/scripts/app.js"></script>
+</body>
+</html>
