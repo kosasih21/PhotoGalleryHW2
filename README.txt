@@ -1,6 +1,4 @@
 Vincentius Kosasih
-Vkosasih3
-903684826
 
 Here are the two websites.
 http://54.82.239.95:5001/
@@ -8,10 +6,10 @@ http://54.82.239.95:5000/
 
 The two credentials you can user are described below. They work on both websites equally.
 vkosasih3@gatech.edu
-motor123
+-
 
 vkosasih3+2@gatech.edu
-motor123
+-
 
 SQL Version
 I started development by initially trying to create the user table in my SQL. I tried using several methods including the SQL workbench and the inline MySQL console. But I concluded that I had to install my SQL on the EC2 in line console and then manually add the table using MySQL commands after checking documentation.
